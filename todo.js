@@ -1,0 +1,59 @@
+const inputBar = document.querySelector("input.input-bar");
+const addBtn = document.querySelector("button.add-task");
+const taskList = document.querySelector("ol.task-list");
+
+//  When the user types a task and clicks "Add" =>
+//        Get the task value
+//        Save it to an array
+//        Save the updated array in localStorage
+//        Display all tasks on the page
+
+// 1. Load tasks from localStorage
+//                        obj || array
+let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+displayTasks();
+
+// 2. Add task
+addBtn.addEventListener("click", () => {
+  const taskText = inputBar.value.trim();
+  if (taskText !== "") {
+    tasks.push(taskText);
+    inputBar.value = ""; // Clear input
+    saveTasks();
+    displayTasks();
+  }
+});
+
+// 3. Save to localStorage
+function saveTasks() {
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+}
+
+// 4. Display tasks
+function displayTasks() {
+  // Clear existing items in the <ol>...</ol>
+  taskList.innerHTML = "";
+
+  // Then iterate in each items of obj || array
+  tasks.forEach((taskItem, index) => {
+
+    // ALL THESE WILL BE WHAT WILL BE DISPLAYED, WHEN ADD TASK BTN IS CLICKED
+
+    // Create list in the <ol>...</ol> and give it content of the i-th item of the array
+    const li = document.createElement("li");
+    li.textContent = taskItem;
+
+    // Create a button for del
+    const deleteBtn = document.createElement("button");
+    deleteBtn.textContent = "Delete";
+    deleteBtn.className = "del-btn";
+    deleteBtn.onclick = () => {
+      tasks.splice(index, 1);
+      saveTasks();
+      displayTasks();
+    };
+
+    li.appendChild(deleteBtn);
+    taskList.appendChild(li);
+  });
+}
