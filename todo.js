@@ -12,7 +12,7 @@ let checkBtn;
 // 1. Load tasks from localStorage
 //                        obj || array
 let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
-let done = JSSON.parse(localStorage.getItem("done")) || [];
+let done = JSON.parse(localStorage.getItem("done")) || [];
 displayTasks();
 
 // 2. Add task
