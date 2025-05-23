@@ -56,3 +56,19 @@ li {
     border-radius: 1em;
     list-style-type: none;
 }
+
+input.check-box {
+    margin-left: 1em;
+}
+
+input.check-box[type="checkbox"]:checked {
+    width: 1rem;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    background-color: var(--blue-green);
+}
+
+input.check-box[type="checkbox"]:checked::after {
+    content: "✔";
+    font-size: 14px ;
+}

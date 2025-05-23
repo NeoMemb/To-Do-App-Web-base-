@@ -1,6 +1,7 @@
 const inputBar = document.querySelector("input.input-bar");
 const addBtn = document.querySelector("button.add-task");
 const taskList = document.querySelector("ol.task-list");
+let checkBtn;
 
 //  When the user types a task and clicks "Add" =>
 //        Get the task value
@@ -11,6 +12,7 @@ const taskList = document.querySelector("ol.task-list");
 // 1. Load tasks from localStorage
 //                        obj || array
 let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+let done = JSSON.parse(localStorage.getItem("done")) || [];
 displayTasks();
 
 // 2. Add task
@@ -19,14 +21,23 @@ addBtn.addEventListener("click", () => {
   if (taskText !== "") {
     tasks.push(taskText);
     inputBar.value = ""; // Clear input
-    saveTasks();
+    saveTasks("tasks", tasks);
     displayTasks();
   }
 });
 
-// 3. Save to localStorage
-function saveTasks() {
-  localStorage.setItem("tasks", JSON.stringify(tasks));
+checkBtn.addEventListener("change", (e) =>{
+  if (e.target.checked){
+    // saveTasks("done", e.parentElement.innerHTML)
+    console.log(e.parentElement);
+  }
+});
+
+function saveTasks(a, b) {
+  // saveTasks: save a json file stringify
+// @a: the key
+// @b: the value to bestringify
+  localStorage.setItem(a, JSON.stringify(b));
 }
 
 // 4. Display tasks
@@ -49,11 +60,23 @@ function displayTasks() {
     deleteBtn.className = "del-btn";
     deleteBtn.onclick = () => {
       tasks.splice(index, 1);
-      saveTasks();
+      saveTasks("tasks", tasks);
       displayTasks();
     };
 
+    checkBtn = document.createElement("input");
+
+    const attributes = {
+      type: "checkbox",
+      class: "check-box"
+    };
+
+    for (let key in attributes){
+      checkBtn.setAttribute(key, attributes[key]);
+    }
+
     li.appendChild(deleteBtn);
+    li.appendChild(checkBtn);
     taskList.appendChild(li);
   });
 }
