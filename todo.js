@@ -1,7 +1,7 @@
 const inputBar = document.querySelector("input.input-bar");
 const addBtn = document.querySelector("button.add-task");
 const taskList = document.querySelector("ol.task-list");
-let checkBtn;
+let checkBtn, taskText;
 
 //  When the user types a task and clicks "Add" =>
 //        Get the task value
@@ -17,13 +17,25 @@ displayTasks();
 
 // 2. Add task
 addBtn.addEventListener("click", () => {
-  const taskText = inputBar.value.trim();
+  taskText = inputBar.value.trim();
   if (taskText !== "") {
     tasks.push(taskText);
     inputBar.value = ""; // Clear input
     saveTasks("tasks", tasks);
     displayTasks();
   }
+});
+
+inputBar.addEventListener("keydown", (e) => {
+  if (e.key === "Enter"){
+    taskText = inputBar.value.trim();
+    if (taskText !== "") {
+      tasks.push(taskText);
+      inputBar.value = ""; // Clear input
+      saveTasks("tasks", tasks);
+      displayTasks();
+    }
+    }
 });
 
 checkBtn.addEventListener("change", (e) =>{
