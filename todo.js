@@ -26,6 +26,8 @@ addBtn.addEventListener("click", () => {
   }
 });
 
+
+// Setting the 'Enter' key button
 inputBar.addEventListener("keydown", (e) => {
   if (e.key === "Enter"){
     taskText = inputBar.value.trim();
