@@ -36,6 +36,7 @@ h1 {
     padding: .5rem;
     font-size: medium;
     caret-color: goldenrod;
+    width: 60vw;
 }
 
 button {
@@ -68,7 +69,13 @@ input.check-box[type="checkbox"]:checked {
     background-color: var(--blue-green);
 }
 
-input.check-box[type="checkbox"]:checked::after {
+.tasks-section {
+    border: 2px solid grey;
+    border-radius: .5em;
+    padding: 2px 2px;
+}
+
+/* input.check-box[type="checkbox"]:checked::after {
     content: "✔";
     font-size: 14px ;
-}
+} */

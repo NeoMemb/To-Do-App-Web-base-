@@ -23,3 +23,8 @@
  - Update localStorage.
 
  - Update the DOM.
+
+
+### I created two branches for now:
+- main (For learning: with the help of chatgpt hint)
+- NewFeature: Adding new features like; the wonderful enter key action, and adding done task.
