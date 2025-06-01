@@ -54,9 +54,7 @@ inputBar.addEventListener("keydown", (e) => {
 function displayTasks(to, from) {
   // Clear existing items in the <ol>...</ol>
 
-  
   to.innerHTML = "";
-
   // Then iterate in each items of obj || array
   from.forEach((taskItem, index) => {
 
@@ -90,18 +88,26 @@ function displayTasks(to, from) {
       checkBtn.setAttribute(key, attributes[key]);
     }
 
+    // ADDED THIS EVENT LISTENER HERE:
+    checkBtn.addEventListener("change", (e) =>
+    {
+      if (e.target.checked) {
+        done.push(taskItem);
+        from.splice(index, 1);
+        
+        saveTasks("tasks", tasks);
+        saveTasks("done", done);
+
+        displayTasks(taskList, tasks);
+        displayTasks(doneList, done);
+      }
+    })
+
     li.appendChild(deleteBtn);
     li.appendChild(checkBtn);
     to.appendChild(li);
   });
   addBorder(to);
-}
-if (checkBtn.checked){
-  done.push(target.parentElement);
-  saveTasks(done, "done");
-  checkBtn.parentElement.remove();
-  displayTasks(taskList, tasks);
-  displayTasks(doneList, done);
 }
 displayTasks(doneList, done);
 
