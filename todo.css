@@ -69,8 +69,8 @@ input.check-box[type="checkbox"]:checked {
     background-color: var(--blue-green);
 }
 
-.tasks-section {
-    border: 2px solid grey;
+.have-border {
+    border: none;
     border-radius: .5em;
     padding: 2px 2px;
 }
